@@ -1,10 +1,12 @@
 @extends('layouts.app')
-@section('page-title') Home Page  @endsection
+
+@section('page-title') Comics Home  @endsection
+
 @section('content') 
 
     <main>
         <div class="container">
-        <h1>Sono alla HomePage</h1>
+         <h1>Sono alla HomePage</h1>
         </div>
     </main>
 
