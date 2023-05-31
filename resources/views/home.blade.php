@@ -1,10 +1,11 @@
-<main>
-        <div class="container">
-            @forelse ($comics as $comics)
-                {{$comics['title']}}<br>
-            @empty
+@extends('layouts.app')
+@section('page-title') Home Page  @endsection
+@section('content') 
 
-            @endforelse
-           
+    <main>
+        <div class="container">
+        <h1>Sono alla HomePage</h1>
         </div>
     </main>
+
+@endsection
