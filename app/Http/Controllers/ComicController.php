@@ -15,10 +15,8 @@ class ComicController extends Controller
     public function index() //Viene usato per prendere dal DB tutti i record di un’entità e passarli ad una view.
     {
         $comics = Comic::All();
-
         return view('comics.index', compact('comics'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +26,6 @@ class ComicController extends Controller
     {
         return view('comics.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -38,7 +35,6 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         $form = $request->all();
-
         $newComic = new Comic();
         $newComic->title = $form['title'];
         $newComic->description = $form['description'];
@@ -51,7 +47,6 @@ class ComicController extends Controller
 
         return redirect()->route('comics.show', ['comic' => $newComic->id]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -63,7 +58,6 @@ class ComicController extends Controller
         $comic = Comic::find($id);
         return view('comics.show', compact('comic'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -74,7 +68,6 @@ class ComicController extends Controller
     {
         return view('comics.edit', compact('comic'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -82,22 +75,23 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  Comic $comic)
+    public function update(Request $request, Comic $comic)
     {
         $form = $request->all();
         $comic->update($form);
-
         return redirect()->route('comics.show', $comic->id);
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function destroy(Comic $comic)
     {
-        //
+
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
 }

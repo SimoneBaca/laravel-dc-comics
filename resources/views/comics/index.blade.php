@@ -13,9 +13,9 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Titolo</th>
-                    <th scope="col">Serie</th>
-                    <th scope="col">Prezzo</th>
+                    <th scope="col" class="col-4">Titolo</th>
+                    <th scope="col" class="col-4">Serie</th>
+                    <th scope="col" class="col-1">Prezzo</th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -26,11 +26,19 @@
                     <td>{{$comic['title']}}</td>
                     <td>{{$comic['series']}}</td>
                     <td>{{$comic['price']}}</td>
-                    <td>
+                    <td class="d-flex justify-content-between">
                         <a class="btn btn-primary" href="{{route('comics.show', ['comic' => $comic->id])}}" role="button">Show</a>
                         <a class="btn btn-warning" href="{{route('comics.edit', ['comic' => $comic->id])}}" role="button">Edit</a>
+                        <button type="button" class="btn btn-danger" id="delete_bttn">Delete</button>
                     </td>
                 </tr>
+                <div id="popup" style="display: none;">
+                    <form action="{{route('comics.destroy', ['comic' => $comic->id])}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" id="delete_bttn">Delete</button>
+                    </form>
+                </div>
                 @empty
                 <h1>Non ci sono elementi da visualizzare</h1>
                 @endforelse
